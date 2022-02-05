@@ -1,0 +1,8 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+{% for post in posts %}
+{{ post.title }}
+{% endfor %}
+
+{% endblock content %}

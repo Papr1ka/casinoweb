@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+:root{
+    --background : #131619;
+    --gradient1 : linear-gradient(red, orange, yellow, green, blue);
+    --nav_back : #0C1013;
+    --text_color : #F0F0F0;
+    --nav_back_hover : #1f2931;
+    --font: 'Open Sans', sans-serif;
+    --link_color : var(--text_color);
+    --text-size : 1.5em;
+    --title-size : 3em;
+    --accent-color: firebrick;
+  }
+
+*{
+    font-family: var(--font);
+}
