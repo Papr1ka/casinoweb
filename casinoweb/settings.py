@@ -10,9 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from os import path
+from os import path, environ
 from pathlib import Path
-import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dashboard',
+    'markdownify'
 ]
 
 MIDDLEWARE = [
@@ -75,10 +75,17 @@ WSGI_APPLICATION = 'casinoweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+MONGO_PASSWORD = environ.get("MONGO_PASSWORD")
+DATABASE_NAME = 'casino_web'
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'casino-web',
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+            'host': f'mongodb+srv://user:{MONGO_PASSWORD}@cluster0.qbwbb.mongodb.net/{DATABASE_NAME}?retryWrites=true&w=majority'
+        }
     }
 }
 

@@ -1,8 +1,55 @@
 {% extends 'dashboard/base.html' %}
+{% load static %}
 {% block content %}
 
-{% for post in posts %}
-{{ post.title }}
-{% endfor %}
+<div class="news cont">
+  <div class="container">
+    <div class="news_title">
+      <div class="news_title_in">
+        Новости
+      </div>
+    </div>
+    <div class="news_inner">
+      {% for post in page_obj.object_list %}
+      <div class="post">
+        <div class="post_in">
+          <img src="{{post.img}}" alt="" class="post_img">
+          <div class="post_">
+            <div class="post_timestamp">{{post.date_pub | date:"d.m.Y G:i"}}</div>
+            <div class="post_title">
+              <a href="{{ post.get_absolute_url }}">{{post.title}}</a>
+            </div>
+            <div class="post_content">
+              {% autoescape off %}
+              {{post.body | truncatewords:30}}
+              {% endautoescape %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
 
+{% if is_paginated %}
+<div class="container">
+  <div class="pagination">
+    <a href="{{prev_url}}">
+      <img src="{% static 'images/left-arrow.svg' %}" class="icon">
+    </a>
+    {% for page in page_numbers %}
+    <a class="p_link" href="?page={{page}}">
+      {% if page == page_obj.number %}
+      <span class="active">{{ page }}</span>
+      {% else %}
+      <span>{{ page }}</span>
+      {% endif %}
+    </a>
+    {% endfor %}
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <a href="{{next_url}}"><img src="{% static 'images/right-arrow.svg' %}" class="icon"></a>
+  </div>
+</div>
+{% endif %}
 {% endblock content %}

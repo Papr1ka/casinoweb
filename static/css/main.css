@@ -11,8 +11,16 @@
     --text-size : 1.5em;
     --title-size : 3em;
     --accent-color: firebrick;
+    --text_second_color: rgb(255, 255, 255);
+    --news_color: var(--nav_back_hover);
+    --text-second-color: #666;
   }
 
 *{
     font-family: var(--font);
+    color: var(--text_color);
+}
+
+body{
+  background: var(--background);
 }

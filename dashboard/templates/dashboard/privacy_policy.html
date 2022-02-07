@@ -1,0 +1,14 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load markdownify %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/privacy_policy.css' %}">
+{% endblock links %}
+{% block content %}
+<div class="cont">
+    <div class="container page">
+        {{post | markdownify}}
+    </div>
+</div>
+{% endblock content %}

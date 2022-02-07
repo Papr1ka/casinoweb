@@ -1,0 +1,19 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+  <div class="page">
+      <div class="page_ctx">
+          <div class="page_title">{{post.title}}</div>
+          <div class="page_media">
+              <div class="page_timestamp">{{post.date_pub | date:"d.m.Y G:i"}}</div>
+          </div>
+          <div class="page_content">
+            {% autoescape off %}
+            {{post.body}}
+            {% endautoescape %}
+          </div>
+      </div>
+  </div>
+
+{% endblock content %}
+

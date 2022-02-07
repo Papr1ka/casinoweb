@@ -10,7 +10,7 @@
 }
 
 .navbar a:hover{
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 .nav-search, .nav-search:focus{
@@ -30,4 +30,40 @@
 
 .navbar-toggler{
     color: var(--accent-color);
+}
+
+.search_btn{
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    outline: none!important;
+    cursor: pointer;
+    display: inline;
+    background: var(--accent-color);
+}
+
+#search{
+    border-radius: 0;
+}
+
+.search_btn img{
+    width: 20px;
+    height: 20px;
+    fill: #5a6674;
+}
+
+.nav-item a::after{
+    content: "";
+    display: block;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(to right, #900020, #B00000);
+    transition: 1s;
+}
+
+.nav-item:hover a::after{
+    width: 100%;
 }

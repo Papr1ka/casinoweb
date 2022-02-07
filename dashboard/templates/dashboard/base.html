@@ -11,6 +11,10 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/posts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    {% block links %}
+    {% endblock links %}
     <title>Сайт</title>
 </head>
 <body>
@@ -25,19 +29,22 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="#">Главная<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Команды</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Новости</a>
+              <a class="nav-link" href="{% url 'post_list_url' %}">Новости</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Глоссарий</a>
             </li>
           </ul>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Политика конфиденциальности<span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'privacy_policy_url' %}">Политика конфиденциальности<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Уловия использования</a>
@@ -46,14 +53,11 @@
               <a class="nav-link" href="#">Поддержка</a>
             </li>
             <li>
-                <form class="form-inline">
-                    <input id="search" class="form-control mr-sm-2 nav-search" type="search" placeholder="Найти" aria-label="Search">
-                    <span id="search-btn">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="white" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-                            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-                        </svg>
-                    </span>
+                <form class="form-inline" action="{% url 'post_list_url' %}">
+                    <input id="search" class="form-control nav-search" type="search" placeholder="Найти" aria-label="Search" name='search'>
+                    <button class="search_btn">
+                      <img class="" src="{% static 'images/search.svg' %}" alt="">
+                    </button>
                 </form>
             </li>
           </ul>
@@ -61,5 +65,8 @@
     </nav>
     {% block content %}
     {% endblock content %}
+    {% if request.user.is_authenticated and request.user.is_staff %}
+    {% include 'dashboard/includes/admin.html' %}
+    {% endif %}
 </body>
 </html>
