@@ -1,6 +1,6 @@
 cd /d D:\documents\python\casinodjango\casinoweb
 echo off
-python manage.py runserver
+D:\documents\python\casinodjango\casinoweb\venv\Scripts\python.exe D:\documents\python\casinodjango\casinoweb\manage.py runserver
 
 pause
 

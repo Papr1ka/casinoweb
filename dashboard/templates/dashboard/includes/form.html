@@ -1,0 +1,70 @@
+<div class="pre">
+    <div class="titl">
+        {{form.errors}}
+        <strong>Заголовок</strong>
+        <div>
+            {{form.title}}
+        </div>
+    </div>
+    <div class="image">
+        <strong>ссылка на картинку для превью</strong>
+        <div>
+            {{form.img}}
+        </div>
+    </div>
+    <div class="slug">
+        <strong>Человекочитаемый url (slug)</strong>
+        <div>
+            {{form.slug}}
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="pretty">
+    <div class="page">
+        <div class="page_ctx">
+        <div class="page_title" id="title_view"></div>
+            <div class="page_media">
+            <div class="page_timestamp">Создано такого-то такого-то, картинки тут не будет</div>
+            <img src="" class = "news_flaticon" id="img_view">
+            </div>
+        <div class="page_content" id="body_view">{{get_markdown}}</div>
+        </div>
+    </div>
+    </div>
+    <div class="editor">
+        {{form.body}}
+    </div>
+</div>
+<div class="btn2">
+    <div class="button">
+        <button type="submit" class="btn">Подтвердить</button>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+    let body = document.getElementById('id_body')
+    let body_view = document.getElementById('body_view')
+    let title = document.getElementById('id_title')
+    let title_view = document.getElementById('title_view')
+    let img = document.getElementById('id_img')
+    let img_view = document.getElementById('img_view')
+
+    body.addEventListener('input', (event) => {
+        body_view.innerHTML = marked.parse(event.target.value);
+        console.log(event.target.value)
+    })
+
+    title.addEventListener('input', (event) => {
+        title_view.textContent = event.target.value
+    })
+
+    img.addEventListener('input', (event) => {
+        img_view.src = event.target.value
+    })
+
+    body_view.innerHTML = marked.parse(body.textContent)
+    title_view.textContent = title.value
+    img_view.src = img.value
+
+</script>

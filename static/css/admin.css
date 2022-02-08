@@ -1,14 +1,15 @@
 .admin_panel{
-    border: 1px solid #999;
-    border-radius: 2px;
+    border-radius: 1em;
     position: fixed;
     right: 50px;
     bottom: 30px;
     padding: 15px;
     color: var(--text_color);
+    background: transparent;
 }
 
 .admin_panel a{
     display: block;
     margin-bottom: 1em;
+    background-color: var(--accent-color);
 }

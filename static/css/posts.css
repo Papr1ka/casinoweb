@@ -186,3 +186,7 @@
 .cont{
     margin-top: 3em;
 }
+
+.post{
+    max-height: 400px;
+}

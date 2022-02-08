@@ -1,6 +1,7 @@
 from django import forms
 from .models import Post
 from django.core.exceptions import ValidationError
+from markdown import markdown
 
 
 class PostForm(forms.ModelForm):
@@ -9,8 +10,10 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['title', 'body', 'slug', 'img']
         widgets = {
-            i: forms.TextInput(attrs={'class': 'form-control'}) for i in fields
+            i: forms.TextInput(attrs={'class': 'linear'}) for i in fields
         }
+        
+        widgets['body'] = forms.Textarea(attrs={'class': 'body_editor', 'wrap': 'off', 'placeholder': '#markdown here'})
     
     
     def clean_slug(self):

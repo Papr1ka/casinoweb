@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import PostForm
 from .models import Post
 from django.core.exceptions import PermissionDenied
@@ -26,6 +25,7 @@ def superuser_required(func):
 def posts(request):
     search_query = request.GET.get('search', '')
     if search_query:
+        search_query = search_query.lower()
         posts = Post.objects.filter(Q(title__icontains=search_query) | Q(body__icontains=search_query))
     else:
         posts = Post.objects.all()
@@ -75,6 +75,7 @@ class PostCreate(View):
     
     @superuser_required
     def post(self, request):
+        request.POST['body'] = request.POST['body'][1:-1]
         bound_form = PostForm(request.POST)
         if bound_form.is_valid():
             new_tag = bound_form.save()

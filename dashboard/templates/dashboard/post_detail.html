@@ -1,4 +1,5 @@
 {% extends 'dashboard/base.html' %}
+{% load markdownify %}
 {% block content %}
 
   <div class="page">
@@ -9,7 +10,7 @@
           </div>
           <div class="page_content">
             {% autoescape off %}
-            {{post.body}}
+            {{post.raw}}
             {% endautoescape %}
           </div>
       </div>

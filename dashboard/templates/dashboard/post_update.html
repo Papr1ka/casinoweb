@@ -1,19 +1,11 @@
 {% extends 'dashboard/base.html' %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/create_news.css' %}">
+{% endblock links %}
 {% block content %}
-    <form action="{{ post.get_update_url }}" method="post">
-        {% csrf_token %}
-        {% for field in form %}
-        <div class='form-group'>
-        {% if field.errors %}
-            <div class="alert alert-danger">
-            {{ field.errors }}
-            </div>
-        {% endif %}
-
-        {{ field.label }}
-        {{ field }}
-        </div>
-        {% endfor %}
-        <button type="submit" class="btn btn-primary">Обновить Пост</button>
-    </form>
+<form action="{{ post.get_update_url }}" method="post">
+    {% csrf_token %}
+    {% include 'dashboard/includes/form.html' %}
+</form>
 {% endblock content %}

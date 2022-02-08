@@ -41,6 +41,30 @@ INSTALLED_APPS = [
     'markdownify'
 ]
 
+MARKDOWNIFY = {
+    "default": {
+        "MARKDOWN_EXTENSIONS": [
+            'markdown.extensions.fenced_code',
+            'markdown.extensions.extra',
+            'markdown.extensions.abbr',
+            'markdown.extensions.attr_list',
+            'markdown.extensions.def_list',
+            'markdown.extensions.footnotes',
+            'markdown.extensions.md_in_html',
+            'markdown.extensions.tables',
+            'markdown.extensions.admonition',
+            'markdown.extensions.codehilite',
+            'markdown.extensions.legacy_attrs',
+            'markdown.extensions.legacy_em',
+            'markdown.extensions.meta',
+            'markdown.extensions.sane_lists',
+            'markdown.extensions.smarty',
+            'markdown.extensions.toc',
+            'markdown.extensions.wikilinks'
+        ]
+    }
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

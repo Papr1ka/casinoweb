@@ -2,8 +2,9 @@ from time import time
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from markdown import markdown
 
-# Create your models here.
+
 class Post(models.Model):
     title = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, unique=True, blank=True)
@@ -28,9 +29,12 @@ class Post(models.Model):
         return new_slug + '-' + str(time())
     
     def save(self, *args, **kwargs):
-        if not self.id:
+        if not self.id or self.slug == '':
             self.slug = self.gen_slug(self.title)
         super().save(*args, **kwargs)
+    
+    def raw(self):
+        return markdown(self.body)
 
     class Meta:
         ordering = ['-date_pub']

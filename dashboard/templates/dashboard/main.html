@@ -1,5 +1,6 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{% load markdownify %}
 {% block content %}
 
 <div class="news cont">
@@ -21,7 +22,7 @@
             </div>
             <div class="post_content">
               {% autoescape off %}
-              {{post.body | truncatewords:30}}
+              {{post.raw | truncatewords_html:30}}
               {% endautoescape %}
             </div>
           </div>
