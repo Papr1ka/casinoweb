@@ -51,8 +51,8 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Поддержка</a>
             </li>
-            <li>
-                <form class="form-inline" action="{% url 'post_list_url' %}">
+            <li class="nav-item">
+                <form class="form-inline search_form" action="{% url 'post_list_url' %}">
                     <input id="search" class="form-control nav-search" type="search" placeholder="Найти" aria-label="Search" name='search'>
                     <button class="search_btn">
                       <img class="" src="{% static 'images/search.svg' %}" alt="">

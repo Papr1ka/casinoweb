@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="slug">
-        <strong>Человекочитаемый url (slug)</strong>
+        <strong>Человекочитаемый url (slug (не обязательно))</strong>
         <div>
             {{form.slug}}
         </div>
@@ -37,9 +37,9 @@
     </div>
 </div>
 <div class="btn2">
-    <div class="button">
-        <button type="submit" class="btn">Подтвердить</button>
-    </div>
+    <button type="submit" class="btn_container">
+        <span>Подтвердить</span>
+    </button>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
@@ -49,6 +49,7 @@
     let title_view = document.getElementById('title_view')
     let img = document.getElementById('id_img')
     let img_view = document.getElementById('img_view')
+    let slug = document.getElementById('id_slug')
 
     body.addEventListener('input', (event) => {
         body_view.innerHTML = marked.parse(event.target.value);
@@ -66,5 +67,6 @@
     body_view.innerHTML = marked.parse(body.textContent)
     title_view.textContent = title.value
     img_view.src = img.value
+    slug.value = ''
 
 </script>

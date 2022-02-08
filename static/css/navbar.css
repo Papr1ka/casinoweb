@@ -68,9 +68,11 @@
     width: 100%;
 }
 
-@media screen and (max-width : 1300px){
+.search_form{
+    flex-flow: row;
+}
 
-    .navbar-nav{
-        flex-direction: column !important;
-    }
+.nav-item{
+    display: flex;
+    align-items: center;
 }

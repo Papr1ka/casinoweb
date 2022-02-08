@@ -75,7 +75,6 @@ class PostCreate(View):
     
     @superuser_required
     def post(self, request):
-        request.POST['body'] = request.POST['body'][1:-1]
         bound_form = PostForm(request.POST)
         if bound_form.is_valid():
             new_tag = bound_form.save()
