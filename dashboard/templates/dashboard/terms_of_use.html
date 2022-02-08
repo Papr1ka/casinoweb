@@ -1,0 +1,35 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load markdownify %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/page.css' %}">
+{% endblock links %}
+{% block content %}
+<div class="page">
+    <div class="page_background">
+        <div class="page_content">
+            <div class="page_content" id="body_view">
+                <h1 id="уловия-использования">Уловия использования</h1>
+                <hr>
+                <p>Данные, которые мы храним о вас</p>
+                <ul>
+                <li>Данные, которые мы храним о вас</li>
+                <li>Идентификатор вашего сервера (id)</li>
+                <li>Ваш Идентификатор (id)</li>
+                <li>Товары вашего сервера</li>
+                <li>Товары рынка вашего сервера</li>
+                <li>Количество отправленых вами сообщений на сервере</li>
+                <li>Количество сыгранных вами игр, из предложенных ботом</li>
+                <li>Время вашего последнего голосования за бота</li>
+                <li>Вашу тему для status</li>
+                <li>Данные, такие как игровой счёт, уровень, количество опыта</li>
+                <li>Ваше описание для status, также отображаемое в scoreboard</li>
+                <li>Предметы в вашем инвентаре</li>
+                <li>Рыбу в садке, компоненты, купленные водоёмы и удочки</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

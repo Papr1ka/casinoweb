@@ -1,0 +1,16 @@
+.categ{
+    background: var(--nav_back_hover);
+}
+
+.list-group-item{
+    background: transparent;
+}
+
+.list-group-item:not(:last-child)::after{
+    content: "";
+    position: relative;
+    height: 1px;
+    background: #214646;
+    display: block;
+    width: 100%;
+}

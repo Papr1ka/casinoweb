@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views import View
+from markdown import markdown
 from .forms import PostForm
 from .models import Post
 from django.core.exceptions import PermissionDenied
@@ -112,5 +113,13 @@ class PostDelete(View):
 
 class PrivacyPolicy(View):
     def get(self, request):
-        post = "# Обзор\n##### Casino - это бот, способный вывести азартные игры вашего сервера на новый уровень!\n##### Бот включает в себя экономику, систему уровней, карточки пользователей, и многое другое!\n\n### Рулетка\n![рулетка](https://i.ibb.co/QPSrbDt/1.png)\n\n### Блэкджек![блэкджек](https://i.ibb.co/2qBXmNn/5.png)\n\n### Слоты\n![слоты](https://i.ibb.co/F5pr4QT/3.png)\n\n### Кости\n![кости](https://i.ibb.co/ZGbt3cL/6.png)\n\n### Камень ножницы бумага\n![КНБ](https://i.ibb.co/r78F1pf/rps.png)\n\n### Магазин\n![магазин](https://i.ibb.co/HdRPrTD/2.png)\n\n### Рыбалка\n![рыбалка](https://i.ibb.co/jz5dN0P/Screenshot-1.png)\n![](https://i.ibb.co/YdqvW0J/Screenshot-2.png)>\n\n\n## соглашение\n```sh\n[] - обязательный параметр; () - необязательный параметр; @пользователь - упоминание пользователя; | - или\n```\n\n"
-        return render(request, 'dashboard/privacy_policy.html', context={'post': post})
+        return render(request, 'dashboard/privacy_policy.html')
+
+class TermsOfUse(View):
+    def get(self, request):
+        return render(request, 'dashboard/terms_of_use.html')
+
+class Commands(View):
+    def get(self, request):
+        return render(request, 'dashboard/commands.html')
+    

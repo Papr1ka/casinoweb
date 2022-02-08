@@ -3,12 +3,20 @@
 {% load markdownify %}
 
 {% block links %}
-<link rel="stylesheet" href="{% static 'css/privacy_policy.css' %}">
+<link rel="stylesheet" href="{% static 'css/page.css' %}">
 {% endblock links %}
 {% block content %}
-<div class="cont">
-    <div class="container page">
-        {{post | markdownify}}
+<div class="page">
+    <div class="page_background">
+        <div class="page_content">
+            <div class="page_content" id="body_view">
+                <h1 id="политика-конфиденциальности">Политика конфиденциальности</h1>
+                <hr>
+                <p>Мы автоматически собираем данные, указанные в политике использования, только для предоставления заявленных услуг. Данные о вас на сервере автоматически удаляются при вашем уходе с сервера, удаления бота с сервера, или удалении сервера</p>
+                <p>Мы не публикуем данные, указанные в политике использования, доступ к ним есть только у нас</p>
+                <p>Вы можете запросить удаление всех данных о вас, или вашем сервере, обратившись на наш сервер поддержки</p>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock content %}

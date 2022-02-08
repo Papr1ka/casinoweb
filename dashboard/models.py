@@ -9,7 +9,7 @@ class Post(models.Model):
     title = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, unique=True, blank=True)
     body = models.TextField(blank=True, db_index=True)
-    img = models.URLField(blank=True, max_length=300)
+    img = models.URLField(max_length=300)
     date_pub = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):

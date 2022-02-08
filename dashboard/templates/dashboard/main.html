@@ -14,7 +14,17 @@
       {% for post in page_obj.object_list %}
       <div class="post">
         <div class="post_in">
-          <img src="{{post.img}}" alt="" class="post_img">
+          <div>
+            <img src="{{post.img}}" alt="" class="post_img">
+            <div class="learn_more_container">
+              <a class="learn-more redirect" href="{{ post.get_absolute_url }}">
+                <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+                </span>
+                <span class="button-text">Читать</span>
+              </a>
+            </div>
+          </div>
           <div class="post_">
             <div class="post_timestamp">{{post.date_pub | date:"d.m.Y G:i"}}</div>
             <div class="post_title">
