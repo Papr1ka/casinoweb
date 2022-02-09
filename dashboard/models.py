@@ -38,3 +38,38 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-date_pub']
+
+class Command(models.Model):
+    name = models.SlugField(unique=True)
+    usage = models.TextField()
+    example = models.TextField()
+    dop = models.TextField(blank=True)
+    category = models.TextField()
+    
+    def __str__(self):
+        return self.name
+    
+    def get_update_url(self):
+        return reverse('command_update_url', kwargs={'name': self.name})
+    
+    def get_delete_url(self):
+        return reverse('command_delete_url', kwargs={'name': self.name})
+
+    def get_absolute_url(self):
+        return reverse("commands_url")
+
+class TextCallback(models.Model):
+    text = models.TextField()
+    slug = models.SlugField(unique=True)
+    
+    def get_absolute_url(self):
+        return reverse("textcallback_url", kwargs={'slug': self.slug})
+    
+    def gen_slug(self, s):
+        new_slug = slugify(s, allow_unicode=True)
+        return new_slug + '-' + str(time())
+    
+    def save(self, *args, **kwargs):
+        self.slug = self.gen_slug(self.text)
+        super().save(*args, **kwargs)
+    

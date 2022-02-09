@@ -1,0 +1,18 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load markdownify %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/page.css' %}">
+{% endblock links %}
+{% block content %}
+<div class="page">
+    <div class="page_background">
+        <div class="page_content">
+            <div class="page_content" id="body_view">
+                {{form.text}}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

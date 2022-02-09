@@ -50,10 +50,15 @@ a:-webkit-any-link{
   transition: 0.3s;
 }
 
-::-webkit-resizer {
+::-webkit-resizer, .accent {
   background: var(--accent-color);
 }
 
 hr{
   background: #214646;
+}
+
+footer{
+  margin-top: 3em;
+  background: var(--background);
 }

@@ -1,0 +1,13 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/create_news.css' %}">
+{% endblock links %}
+{% block content %}
+
+      <form action="{{ command.get_delete_url }}" method="post">
+        {% csrf_token %}
+        {% include 'dashboard/includes/commandform.html' %}
+      </form>
+
+{% endblock content %}

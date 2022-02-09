@@ -2,8 +2,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views import View
 from markdown import markdown
-from .forms import PostForm
-from .models import Post
+from .forms import CommandForm, PostForm, TextCallbackForm
+from .models import Command, Post
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -81,14 +81,14 @@ class PostCreate(View):
             new_tag = bound_form.save()
             return redirect(new_tag)
         else:
-            return render(request, 'dashboard/post_create.html', context={'form': bound_form})
+            return render(request, 'dashboard/post_create.html', context={'form': bound_form, **kwargs})
 
 class PostUpdate(View):
     @superuser_required
     def get(self, request, slug):
         post = Post.objects.get(slug__iexact=slug)
         bound_form = PostForm(instance=post)
-        return render(request, 'dashboard/post_update.html', context={'form': bound_form, 'post': post})
+        return render(request, 'dashboard/post_update.html', context={'form': bound_form, 'post': post, **kwargs})
 
     @superuser_required
     def post(self, request, slug):
@@ -97,13 +97,13 @@ class PostUpdate(View):
         if bound_form.is_valid():
             new_post = bound_form.save()
             return redirect(new_post)
-        return render(request, 'dashboard/post_update.html', context={'form': bound_form, 'post': post})
+        return render(request, 'dashboard/post_update.html', context={'form': bound_form, 'post': post, **kwargs})
 
 class PostDelete(View):
     @superuser_required
     def get(self, request, slug):
         post = Post.objects.get(slug__iexact=slug)
-        return render(request, 'dashboard/post_delete.html', context={'post': post})
+        return render(request, 'dashboard/post_delete.html', context={'post': post, **kwargs})
 
     @superuser_required
     def post(self, request, slug):
@@ -113,13 +113,78 @@ class PostDelete(View):
 
 class PrivacyPolicy(View):
     def get(self, request):
-        return render(request, 'dashboard/privacy_policy.html')
+        return render(request, 'dashboard/privacy_policy.html', context={**kwargs})
 
 class TermsOfUse(View):
     def get(self, request):
-        return render(request, 'dashboard/terms_of_use.html')
+        return render(request, 'dashboard/terms_of_use.html', context={**kwargs})
 
 class Commands(View):
     def get(self, request):
-        return render(request, 'dashboard/commands.html')
+        names = ['casino', 'fishing', 'shop', 'user']
+        categories = [(Command.objects.filter(category__icontains=i), i) for i in names]
+        return render(request, 'dashboard/commands.html', context={
+            'categories' : categories,
+            'admin': request.user.is_superuser,
+            **kwargs
+        })
     
+class CommandCreate(View):
+    @superuser_required
+    def get(self, request):
+        form = CommandForm()
+        return render(request, 'dashboard/command_create.html', context={'form': form, **kwargs})
+    
+    @superuser_required
+    def post(self, request):
+        bound_form = CommandForm(request.POST)
+        if bound_form.is_valid():
+            new_command = bound_form.save()
+            return redirect(new_command)
+        else:
+            return render(request, 'dashboard/command_create.html', context={'form': bound_form, **kwargs})
+
+class CommandEdit(View):
+    @superuser_required
+    def get(self, request, name):
+        command = get_object_or_404(Command, name__iexact=name)
+        bound_form = CommandForm(instance=command)
+        return render(request, 'dashboard/command_edit.html', context={'form': bound_form, 'command': command, **kwargs})
+    
+    @superuser_required
+    def post(self, request, name):
+        command = Command.objects.get(name__iexact=name)
+        bound_form = CommandForm(request.POST, instance=command)
+        if bound_form.is_valid():
+            new_command = bound_form.save()
+            return redirect(new_command)
+        return render(request, 'dashboard/command_edit.html', context={'form': bound_form, 'command': command, **kwargs})
+
+class CommandDelete(View):
+    @superuser_required
+    def get(self, request, name):
+        command = Command.objects.get(name__iexact=name)
+        return render(request, 'dashboard/command_delete.html', context={'command': command, **kwargs})
+
+    @superuser_required
+    def post(self, request, name):
+        command = Command.objects.get(name__iexact=name)
+        command.delete()
+        return redirect(reverse('commands_url'))
+
+class Main(View):
+    def get(self, request):
+        return render(request, 'dashboard/main.html', context={**kwargs})
+
+class TextCallbackView(View):
+    def get(self, request):
+        form = TextCallbackForm()
+        return render(request, 'dashboard/callback.html', context={'form': form, **kwargs})
+    
+    def post(self, request):
+        bound_form = TextCallbackForm(request.POST)
+        if bound_form.is_valid():
+            callback = bound_form.save()
+            return redirect('main_url')
+        else:
+            return render(request, 'dashboard/callback.html', context={'form': bound_form, **kwargs})

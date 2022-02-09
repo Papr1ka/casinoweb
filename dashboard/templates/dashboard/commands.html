@@ -12,8 +12,9 @@
         <div class="page_content">
             <div class="page_content" id="body_view">
               <div class="container">
-                  <h1 class="display-3">Команлы</h1>
-                  <p class="lead">Viev asdd asd</p>
+                  <h1 class="display-3">Команды</h1>
+                  <p class="lead"><p><code>
+                    [] - обязательный параметр; () - необязательный параметр; @пользователь - упоминание пользователя; | - или</code></p></p>
                   <hr>
                   <section id="commands">
                     <div class="d-flex align-items-start">
@@ -26,22 +27,39 @@
                               </div>
                         </div>
                         <div class="tab-content collumn" id="v-pills-tabContent">
-                          <div class="tab-pane fade show active" id="casino" role="tabpanel" aria-labelledby="casino">
-                            <p>
-                                <button class="fancy" type="button" data-bs-toggle="collapse" data-bs-target="#rulet" aria-expanded="false" aria-controls="rulet">
-                                    rulet
-                                </button>
-                              </p>
-                              <div class="collumn dark collapse collapse-horizontal" id="rulet">
-                                <div>
-                                    This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
+                          {% for category in categories %}
+                          <div class="tab-pane fade" id="{{category.1}}" role="tabpanel" aria-labelledby="{{category.1}}">
+                            <div class="flex">
+                              {% for command in category.0 %}
+                              <button class="fancy" type="button" data-toggle="collapse" data-target="#{{command.name}}" aria-expanded="false" aria-controls="{{command.name}}">
+                                {{command.name}}
+                                {% if admin %}
+                                <a href="{{ command.get_update_url }}">Обновить</a>
+                                <a href="{{ command.get_delete_url }}">удалить</a>
+                                {% endif %}
+                              </button>
+                              <div class="collapse" id="{{command.name}}">
+                                <div class="flex information">
+                                  <div class="usage">
+                                    <p>Использование:</p>
+                                    <code>{{command.usage}}</code>
                                   </div>
+                                  <div class="example">
+                                    <p>Пример:</p>
+                                    <code>{{command.example}}</code>
+                                  </div>
+                                  {% if command.dop %}
+                                  <div class="dop">
+                                    <p>Дополнительно:</p>
+                                    {{command.dop}}
+                                  </div>
+                                  {% endif %}
+                                </div>
                               </div>
-                          </div>
-                          <div class="tab-pane fade" id="fishing" role="tabpanel" aria-labelledby="fishing">2</div>
-                          <div class="tab-pane fade" id="shop" role="tabpanel" aria-labelledby="shop">3</div>
-                          <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user">4</div>
+                              {% endfor %}
+                            </div>
                         </div>
+                        {% endfor %}
                       </div>
                   </section>
               </div>
@@ -49,4 +67,8 @@
         </div>
     </div>
 </div>
+<script>
+  document.getElementById('casino').classList.add('show')
+  document.getElementById('casino').classList.add('active')
+</script>
 {% endblock content %}

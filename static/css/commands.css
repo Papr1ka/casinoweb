@@ -30,7 +30,7 @@
     border: none;
 }
 
-.nav-link:focus, .nav .active{
+.nav .active{
     background-color: var(--accent-color) !important;
 }
 
@@ -38,14 +38,23 @@
     gap: 3em;
 }
 
-/* From cssbuttons.io by @ernestnash */
+@media screen and (max-width: 600px){
+    .d-flex{
+        flex-direction: column;
+    }
+
+    .nav{
+        flex-direction: row !important;
+    }
+}
+
 .fancy {
     display: inline-block;
     padding: 0.3rem 1.8rem;
     font-size: 16px;
     font-weight: 700;
     color: white;
-    border: 3px solid var(--accent-color);
+    border: 3px solid var(--nav_back);
     cursor: pointer;
     position: relative;
     background-color: transparent;
@@ -71,3 +80,25 @@
    .fancy:hover::before {
     transform: translateX(0);
    }
+
+.flex{
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-content{
+    width: 100%;
+}
+
+.flex button:not(:last-child){
+    margin-bottom: 1em;
+}
+
+.flex div:not(:last-child){
+    margin-bottom: 1em;
+}
+
+.information{
+    padding: 1em;
+    background: var(--nav_back);
+}

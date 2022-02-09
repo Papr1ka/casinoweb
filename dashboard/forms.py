@@ -1,5 +1,6 @@
+from dataclasses import fields
 from django import forms
-from .models import Post
+from .models import Command, Post, TextCallback
 from django.core.exceptions import ValidationError
 from markdown import markdown
 
@@ -24,3 +25,21 @@ class PostForm(forms.ModelForm):
             raise ValidationError("Slug is alredy exists (Must be unicle)")
         else:
             return new_slug
+
+class CommandForm(forms.ModelForm):
+    
+    class Meta():
+        model = Command
+        fields = ['name', 'usage', 'example', 'dop', 'category']
+        widgets = {
+            i: forms.TextInput(attrs={'class': 'linear'}) for i in fields
+        }
+
+class TextCallbackForm(forms.ModelForm):
+    
+    class Meta():
+        model = TextCallback
+        fields = ['text']
+        widgets = {
+            i: forms.Textarea(attrs={'class': 'linear'}) for i in fields
+        }

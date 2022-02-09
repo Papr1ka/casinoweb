@@ -1,6 +1,7 @@
 <div class="admin_panel align-items-center">
     <a href="/admin" class="btn btn-dark">Admin</a>
-    <a href="{% url 'post_create_url' %}" class="btn btn-dark">Create</a>
+    <a href="{% url 'post_create_url' %}" class="btn btn-dark">Create Post</a>
+    <a href="{% url 'command_create_url' %}" class="btn btn-dark">Create Command</a>
     {% if detail == True %}
     <a href="{{ admin_object.get_update_url }}" class="btn btn-dark">Update</a>
     <a href="{{ admin_object.get_delete_url }}" class="btn btn-dark">Delete</a>
