@@ -1,4 +1,4 @@
 from django.shortcuts import redirect
 
-def redirect_dashboard(request):
-    return redirect('post_list_url', permanent=True)
+def redirect_main(request):
+    return redirect('main_url', permanent=True)
