@@ -2,9 +2,9 @@ from django.urls import path
 from .views import CommandCreate, CommandDelete, Commands, PostDelete, PostDetail, PostUpdate, PrivacyPolicy, posts, PostCreate, TermsOfUse, CommandEdit, Main, TextCallbackView
 
 urlpatterns = [
-    path('', posts, name='post_list_url'),
+    path('', Main.as_view(), name='main_url'),
+    path('posts', posts, name='post_list_url'),
     path('callback/create', TextCallbackView.as_view(), name='callback_url'),
-    path('main', Main.as_view(), name='main_url'),
     path('post/create', PostCreate.as_view(), name='post_create_url'),
     path('post/<str:slug>/', PostDetail.as_view(), name='post_detail_url'),
     path('post/<str:slug>/update', PostUpdate.as_view(), name='post_update_url'),
