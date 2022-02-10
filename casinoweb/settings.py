@@ -90,20 +90,6 @@ DATABASES = {
     }
 }
 
-MONGO_PASSWORD = 'AxkAirfHYvEX9Myn'
-DATABASE_NAME = 'casino_web'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'casino-web',
-        'ENFORCE_SCHEMA': False,
-        'CLIENT': {
-            'host': f'mongodb+srv://pro2:{MONGO_PASSWORD}@cluster0.qbwbb.mongodb.net/{DATABASE_NAME}?retryWrites=true&w=majority'
-        }
-    }
-}
-
 
 
 # Password validation
