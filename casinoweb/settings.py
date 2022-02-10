@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-x-=ssvr^-id+^3*uzjc5f)wfo3*@1lrd%n8&a1+7j2rd)@kx%b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -88,6 +89,21 @@ DATABASES = {
         }
     }
 }
+
+MONGO_PASSWORD = 'AxkAirfHYvEX9Myn'
+DATABASE_NAME = 'casino_web'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'casino-web',
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+            'host': f'mongodb+srv://pro2:{MONGO_PASSWORD}@cluster0.qbwbb.mongodb.net/{DATABASE_NAME}?retryWrites=true&w=majority'
+        }
+    }
+}
+
 
 
 # Password validation
