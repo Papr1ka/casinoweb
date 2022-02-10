@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-x-=ssvr^-id+^3*uzjc5f)wfo3*@1lrd%n8&a1+7j2rd)@kx%b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'casino-web.herokuapp.com']
 
 
 # Application definition
