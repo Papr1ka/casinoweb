@@ -1,6 +1,6 @@
 django
 djongo
 pymongo==3.10.0
-django-markdownify
 dnspython
 sqlparse==0.2.4
+markdown
