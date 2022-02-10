@@ -41,5 +41,5 @@ class TextCallbackForm(forms.ModelForm):
         model = TextCallback
         fields = ['text']
         widgets = {
-            i: forms.Textarea(attrs={'class': 'linear'}) for i in fields
+            i: forms.Textarea(attrs={'class': 'body_editor', 'wrap': 'off', 'placeholder': '#Ваша обратная связь здесь'}) for i in fields
         }

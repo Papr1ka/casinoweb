@@ -4,13 +4,25 @@
 
 {% block links %}
 <link rel="stylesheet" href="{% static 'css/page.css' %}">
+<link rel="stylesheet" href="{% static 'css/create_news.css' %}">
 {% endblock links %}
 {% block content %}
 <div class="page">
     <div class="page_background">
         <div class="page_content">
             <div class="page_content" id="body_view">
-                {{form.text}}
+                <form action="{% url 'callback_url' %}" method="post">
+                    {% csrf_token %}
+                    {{form.errors}}
+                    <div class="editor">
+                        {{form.text}}
+                    </div>
+                    <div class="btn2">
+                        <button type="submit" class="btn_container">
+                            <span>Подтвердить</span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

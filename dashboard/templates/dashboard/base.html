@@ -15,9 +15,13 @@
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/posts.css' %}">
     <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'images/icon.png' %}">
+    <link rel="shortcut icon" href="{% static 'images/icon.png' %}">
+    <link rel="mask-icon" href="{% static 'images/icon.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'images/icon.png' %}">
     {% block links %}
     {% endblock links %}
-    <title>Сайт</title>
+    <title>{{ app_name }}</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
@@ -32,16 +36,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml">
             <li class="nav-item">
-              <a class="nav-link" href="#">Главная<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{% url 'main_url' %}">Главная<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'commands_url' %}">Команды</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'post_list_url' %}">Новости</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Глоссарий</a>
             </li>
           </ul>
           <ul class="navbar-nav ml-auto">
@@ -65,8 +66,10 @@
           </ul>
         </div>
     </nav>
-    {% block content %}
-    {% endblock content %}
+    <div class="minheight">
+      {% block content %}
+      {% endblock content %}
+    </div>
     {% if request.user.is_authenticated and request.user.is_staff %}
     {% include 'dashboard/includes/admin.html' %}
     {% endif %}
@@ -91,17 +94,17 @@
       <div class="col-md-3 mb-md-0 mb-3">
         <ul class="list-unstyled">
           <li>
-            <a href="#!">Сообщить об ошибке</a>
+            <a href="{% url 'callback_url' %}">Сообщить об ошибке</a>
           </li>
           <li>
-            <a href="#!">Поддержать</a>
+            <a href="{% url 'callback_url' %}">Предложить</a>
           </li>
         </ul>
       </div>
     </div>
   </div>
   <div class="footer-copyright text-center py-3">©
-    <a href="https://mdbootstrap.com/"> Casino</a>
+    <a href="{% url 'post_list_url' %}"> Casino</a>
   </div>
 
 </footer>

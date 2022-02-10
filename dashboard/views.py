@@ -121,7 +121,7 @@ class TermsOfUse(View):
 
 class Commands(View):
     def get(self, request):
-        names = ['casino', 'fishing', 'shop', 'user']
+        names = ['casino', 'fishing', 'shopp', 'user']
         categories = [(Command.objects.filter(category__icontains=i), i) for i in names]
         return render(request, 'dashboard/commands.html', context={
             'categories' : categories,
@@ -174,7 +174,7 @@ class CommandDelete(View):
 
 class Main(View):
     def get(self, request):
-        return render(request, 'dashboard/main.html', context={**kwargs})
+        return render(request, 'dashboard/home.html', context={**kwargs})
 
 class TextCallbackView(View):
     def get(self, request):
@@ -183,6 +183,7 @@ class TextCallbackView(View):
     
     def post(self, request):
         bound_form = TextCallbackForm(request.POST)
+        print('я тут')
         if bound_form.is_valid():
             callback = bound_form.save()
             return redirect('main_url')

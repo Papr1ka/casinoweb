@@ -1,0 +1,73 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock links %}
+{% block content %}
+
+<div class="cont">
+    <div class="brick logog position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+        <div class="col p-lg-5 my-5">
+            <div class="brick_header cent bhead">
+                Casino - Лучший бот для вашего сервера
+                <button class="bbbtn">
+                    <a href="">Пригласить</a>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="brick position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+        <div class="brick gb p-lg-5 my-5 subrick">
+            <div class="brick_header lox">
+                <p class="bhead">Играйте в блэкджек в компании</p>
+                <div class="bcomment">Поддерживается до 8 одновременно играющих игроков</div>
+            </div>
+            <div class="brick_image">
+                <img src="https://i.ibb.co/2qBXmNn/5.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="brick position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+        <div class="brick gb p-lg-5 my-5 subrick">
+            <div class="brick_image">
+                <img src="https://i.ibb.co/HdRPrTD/2.png" alt="">
+            </div>
+            <div class="brick_header lox">
+                <p class="bhead">Создайте собственный магазин ролей</p>
+                <div class="bcomment">Вы сможете выставить на продажу любую роль, или предмет, который только вам вздумается!</div>
+            </div>
+        </div>
+    </div>
+    <div class="brick position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+        <div class="brick gb p-lg-5 my-5 subrick">
+            <div class="brick_header lox">
+                <p class="bhead">Зарабатывайте деньги</p>
+                <p class="bhead">на рыбалке</p>
+                <div class="bcomment">В рыбалке вы сможете ловить кастомную рыбу из 3-х водоёмов, покупать лучшие удочки, а также торговать уловом с другими участниками сервера</div>
+            </div>
+            <div class="brick_image">
+                <div class="c">
+                    <img src="https://i.ibb.co/C1rsJB3/Screenshot-4.png" alt="">
+                    <img src="https://i.ibb.co/x2hgKh5/Screenshot-5.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="brick logog position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+        <div class="col p-lg-5 my-5">
+            <div class="brick_header cent bhead">
+                Прокачать сервер
+                <div class="row gb mt-4">
+                    <button class="bbbtn">
+                        <a href="{% url 'commands_url' %}">Команды</a>
+                    </button>
+                    <button class="bbbtn">
+                        <a href="">Пригласить</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
