@@ -122,7 +122,7 @@ class TermsOfUse(View):
 
 class Commands(View):
     def get(self, request):
-        names = ['casino', 'fishing', 'shopp', 'user']
+        names = ['casino', 'fishing', 'shopp', 'user', 'administration']
         categories = [(Command.objects.filter(category__icontains=i), i) for i in names]
         return render(request, 'dashboard/commands.html', context={
             'categories' : categories,
