@@ -175,7 +175,9 @@ class CommandDelete(View):
 
 class Main(View):
     def get(self, request):
-        return render(request, 'dashboard/home.html', context={**kwargs})
+        textcallbacksubmit = request.session.get('textcallbacksubmit', False)
+        request.session['textcallbacksubmit'] = False
+        return render(request, 'dashboard/home.html', context={'textcallbacksubmit': textcallbacksubmit, **kwargs})
 
 class TextCallbackView(View):
     def get(self, request):
@@ -186,6 +188,8 @@ class TextCallbackView(View):
         bound_form = TextCallbackForm(request.POST)
         if bound_form.is_valid():
             callback = bound_form.save()
+            print(request, dir(request))
+            request.session['textcallbacksubmit'] = True
             return redirect('main_url')
         else:
             return render(request, 'dashboard/callback.html', context={'form': bound_form, **kwargs})
