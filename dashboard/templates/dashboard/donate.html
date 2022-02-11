@@ -1,0 +1,20 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/page.css' %}">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock links %}
+{% block content %}
+<div class="page">
+    <div class="page_background">
+        <div class="page_content">
+            <div class="page_content" id="body_view">
+                <h1>Поддержать Casino</h1>
+                <p>Пожертвование является подарком</p>
+                <button class="bbbtn"><a href="https://www.tinkoff.ru/cf/3LSEAlOHPj5">Подарить</a></button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

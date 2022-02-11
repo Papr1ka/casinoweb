@@ -39,7 +39,8 @@ class TextCallbackForm(forms.ModelForm):
     
     class Meta():
         model = TextCallback
-        fields = ['text']
+        fields = ['author', 'text', 'contact']
         widgets = {
-            i: forms.Textarea(attrs={'class': 'body_editor', 'wrap': 'off', 'placeholder': '#Ваша обратная связь здесь'}) for i in fields
+            i: forms.TextInput(attrs={'class': 'linear'}) for i in fields
         }
+        widgets['text'] = forms.Textarea(attrs={'class': 'body_editor', 'wrap': 'off', 'placeholder': '#Ваша обратная связь здесь'})

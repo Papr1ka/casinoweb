@@ -1,9 +1,10 @@
+from gc import callbacks
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views import View
 from markdown import markdown
 from .forms import CommandForm, PostForm, TextCallbackForm
-from .models import Command, Post
+from .models import Command, Post, TextCallback
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -183,9 +184,24 @@ class TextCallbackView(View):
     
     def post(self, request):
         bound_form = TextCallbackForm(request.POST)
-        print('я тут')
         if bound_form.is_valid():
             callback = bound_form.save()
             return redirect('main_url')
         else:
             return render(request, 'dashboard/callback.html', context={'form': bound_form, **kwargs})
+
+class Donate(View):
+    def get(self, request):
+        return render(request, 'dashboard/donate.html', context={**kwargs})
+
+class TextCallbacks(View):
+    @superuser_required
+    def get(self, request):
+        callbacks = TextCallback.objects.all()
+        return render(request, 'dashboard/callbacks.html', context={'callbacks': callbacks, **kwargs})
+    
+    @superuser_required
+    def post(self, request, slug):
+        textcallback = TextCallback.objects.get(slug__iexact=slug)
+        textcallback.delete()
+        return redirect(reverse('callbacks_url'))

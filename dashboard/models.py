@@ -60,10 +60,16 @@ class Command(models.Model):
 
 class TextCallback(models.Model):
     text = models.TextField()
+    author = models.TextField()
+    contact = models.CharField(max_length=300, blank=True)
     slug = models.SlugField(unique=True)
+    date_pub = models.DateTimeField(auto_now_add=True)
     
     def get_absolute_url(self):
         return reverse("textcallback_url", kwargs={'slug': self.slug})
+    
+    def get_delete_url(self):
+        return reverse('textcallback_delete_url', kwargs={'slug': self.slug})
     
     def gen_slug(self, s):
         new_slug = slugify(s, allow_unicode=True)
@@ -72,4 +78,6 @@ class TextCallback(models.Model):
     def save(self, *args, **kwargs):
         self.slug = self.gen_slug(self.text)
         super().save(*args, **kwargs)
-    
+
+    class Meta:
+        ordering = ['-date_pub']

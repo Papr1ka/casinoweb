@@ -13,6 +13,21 @@
                 <form action="{% url 'callback_url' %}" method="post">
                     {% csrf_token %}
                     {{form.errors}}
+                    <div class="pre">
+                        <div class="titl">
+                            {{form.name}}
+                            <strong>Ваш Ник</strong>
+                            <div>
+                                {{form.author}}
+                            </div>
+                        </div>
+                        <div class="slug">
+                            <strong>Как с вами связаться</strong>
+                            <div>
+                                {{form.contact}}
+                            </div>
+                        </div>
+                    </div>
                     <div class="editor">
                         {{form.text}}
                     </div>

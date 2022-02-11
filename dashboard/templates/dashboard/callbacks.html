@@ -1,0 +1,32 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/page.css' %}">
+{% endblock links %}
+{% block content %}
+<div class="page">
+    <div class="page_background">
+        <div class="page_content">
+            <div class="page_content" id="body_view">
+                {% for callback in callbacks %}
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-header">
+                        {{callback.author}}
+                      </div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{callback.date_pub | date:"d.m.Y G:i"}}</h5>
+                      <p class="card-text">{{callback.text}}</p>
+                      <p class="card-text"><span>Связь: </span>{{callback.contact}}</p>
+                      <form action="{{callback.get_delete_url}}" method="post">
+                          {% csrf_token %}
+                          <button type="submit" class="btn btn-dark">Удалить</button>
+                      </form>
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

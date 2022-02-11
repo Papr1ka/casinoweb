@@ -87,17 +87,14 @@
             <a href="https://top.gg/bot/883201346759704606/analytics">Голосовать</a>
           </li>
           <li>
-            <a href="#!">Пожертвовать</a>
+            <a href="{% url 'donate_url' %}">Пожертвовать</a>
           </li>
         </ul>
       </div>
       <div class="col-md-3 mb-md-0 mb-3">
         <ul class="list-unstyled">
           <li>
-            <a href="{% url 'callback_url' %}">Сообщить об ошибке</a>
-          </li>
-          <li>
-            <a href="{% url 'callback_url' %}">Предложить</a>
+            <a href="{% url 'callback_url' %}">Обратная связь</a>
           </li>
         </ul>
       </div>
@@ -108,5 +105,6 @@
   </div>
 
 </footer>
+
 </body>
 </html>

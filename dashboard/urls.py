@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CommandCreate, CommandDelete, Commands, PostDelete, PostDetail, PostUpdate, PrivacyPolicy, posts, PostCreate, TermsOfUse, CommandEdit, Main, TextCallbackView
+from .views import CommandCreate, CommandDelete, Commands, PostDelete, PostDetail, PostUpdate, PrivacyPolicy, TextCallbacks, posts, PostCreate, TermsOfUse, CommandEdit, Main, TextCallbackView, Donate
 
 urlpatterns = [
     path('', Main.as_view(), name='main_url'),
@@ -15,4 +15,7 @@ urlpatterns = [
     path('commands/<str:name>/update', CommandEdit.as_view(), name='command_update_url'),
     path('commands/<str:name>/delete', CommandDelete.as_view(), name='command_delete_url'),
     path('commands', Commands.as_view(), name='commands_url'),
+    path('donate', Donate.as_view(), name='donate_url'),
+    path('callbacks', TextCallbacks.as_view(), name='callbacks_url'),
+    path('callbacks/<str:slug>/delete', TextCallbacks.as_view(), name='textcallback_delete_url')
 ]
