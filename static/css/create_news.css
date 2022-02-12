@@ -55,7 +55,13 @@ input{
     outline: none;
     display: block;
     color: white;
-    width: 400px;
+    min-width: 400px;
+}
+
+@media screen and (max-width: 600px) {
+    input{
+        min-width: auto;
+    }
 }
 
 input:active, input:hover, input:focus{
