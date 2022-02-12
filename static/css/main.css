@@ -34,6 +34,20 @@ body{
   margin-top: 3em;
 }
 
+pre{
+  margin-bottom: 0;
+}
+
+blockquote{
+  padding: 1.5em 2.5em;
+  margin: 0 0 1.5em;
+  max-width: calc(45rem);
+}
+
+pre code{
+  color: #e83e8c;
+}
+
 .alert-success{
   background-color: transparent;
 }
